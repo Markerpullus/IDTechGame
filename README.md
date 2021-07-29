@@ -1,1 +1,1 @@
-# IDTechGame written in SFML
+# IDTechGame
