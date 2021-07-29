@@ -32,8 +32,21 @@ int main()
 	sf::View camera(sf::Vector2f(80, 80), sf::Vector2f(150, 150));
 	camera.setSize(250, 250);
 
-	sf::Texture playTex;
-	playTex.loadFromFile("Space Assets/player_ship.png");
+	sf::Texture mouse;
+	mouse.loadFromFile("walk_cycle.png");
+	sf::IntRect rect[] = { sf::IntRect(0, 0, 64, 64), sf::IntRect(64, 0, 64, 64), sf::IntRect(128, 0, 64, 64), sf::IntRect(192, 0, 64, 64),
+	sf::IntRect(0, 64, 64, 64), sf::IntRect(64, 64, 64, 64), sf::IntRect(128, 64, 64, 64) };
+
+	sf::Sprite lostArk;
+	sf::Vector2f movement;
+	lostArk.setTexture(mouse);
+	lostArk.setOrigin(32, 32);
+	lostArk.setPosition(200, 200);
+	lostArk.setTextureRect(rect[0]);
+	int imgCount = 0;
+	bool up = false, left = false, down = false, right = false;
+
+	sf::Clock clock;
 
 	sf::Font font;
 	sf::Text text;
@@ -43,15 +56,6 @@ int main()
 	text.setCharacterSize(20);
 	text.setFillColor(sf::Color::Blue);
 
-	sf::Sprite player;
-	sf::Vector2f movement(0.0f, 0.0f);
-	player.setTexture(playTex);
-	player.setPosition(200.0f, 200.0f);
-	player.setScale(1.5f, 1.5f);
-	player.setOrigin(64, 64);
-
-	bool up = false, left = false, down = false, right = false;
-
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -59,7 +63,7 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-
+			
 			if (event.type == sf::Event::KeyPressed)
 			{
 				switch (event.key.code)
@@ -122,14 +126,24 @@ int main()
 		text.move(0.3f, 0);
 		if (text.getPosition().x > 1200)
 			text.setPosition(-150, 0);
-		player.move(movement);
+		lostArk.move(movement);
+
+		{
+			float timer = clock.getElapsedTime().asSeconds();
+			if (timer > 0.1f)
+			{
+				imgCount = (imgCount + 1) % 7;
+				clock.restart();
+			}
+			lostArk.setTextureRect(rect[imgCount]);
+		}
 
 		window.clear();
 
 		if (currentState == GameState::GamePlay)
 		{
 			window.draw(text);
-			window.draw(player);
+			window.draw(lostArk);
 		}
 		
 		window.display();

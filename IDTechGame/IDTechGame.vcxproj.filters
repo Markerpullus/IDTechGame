@@ -22,4 +22,9 @@
   <ItemGroup>
     <Font Include="Candal.ttf" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="walk_cycle.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

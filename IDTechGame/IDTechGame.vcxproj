@@ -150,6 +150,9 @@
   <ItemGroup>
     <Font Include="Candal.ttf" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="walk_cycle.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
