@@ -35,6 +35,14 @@ int main()
 	sf::Texture playTex;
 	playTex.loadFromFile("Space Assets/player_ship.png");
 
+	sf::Font font;
+	sf::Text text;
+	font.loadFromFile("Candal.ttf");
+	text.setFont(font);
+	text.setString("Blah.");
+	text.setCharacterSize(20);
+	text.setFillColor(sf::Color::Blue);
+
 	sf::Sprite player;
 	sf::Vector2f movement(0.0f, 0.0f);
 	player.setTexture(playTex);
@@ -111,12 +119,16 @@ int main()
 			movement.x += -0.005f * movement.x;
 		}
 
+		text.move(0.3f, 0);
+		if (text.getPosition().x > 1200)
+			text.setPosition(-150, 0);
 		player.move(movement);
 
 		window.clear();
 
 		if (currentState == GameState::GamePlay)
 		{
+			window.draw(text);
 			window.draw(player);
 		}
 		
