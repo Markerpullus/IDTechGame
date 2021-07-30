@@ -26,11 +26,15 @@ int main()
 	eye2.setFillColor(sf::Color::Yellow);
 	*/
 
+
+
 	sf::RenderWindow window(sf::VideoMode(1200, 900), "SFML Works");
+	window.setVerticalSyncEnabled(true);
 	GameState currentState = GameState::Menu;
 
-	sf::View camera(sf::Vector2f(80, 80), sf::Vector2f(150, 150));
-	camera.setSize(250, 250);
+	sf::View camera(sf::Vector2f(500, 500), sf::Vector2f(1200, 800));
+	camera.setSize(600, 450);
+	window.setView(camera);
 
 	sf::Texture mouse;
 	mouse.loadFromFile("walk_cycle.png");
@@ -47,6 +51,7 @@ int main()
 	bool up = false, left = false, down = false, right = false;
 
 	sf::Clock clock;
+	sf::Clock frameClock;
 
 	sf::Font font;
 	sf::Text text;
@@ -107,23 +112,23 @@ int main()
 		}
 
 		if (up)
-			movement.y = -0.5f;
+			movement.y = -4.0f;
 		else if (down)
-			movement.y = 0.5f;
+			movement.y = 4.0f;
 		else
 		{
-			movement.y += -0.005f * movement.y;
+			movement.y += -0.05f * movement.y;
 		}
 		if (left)
-			movement.x = -0.5f;
+			movement.x = -4.0f;
 		else if (right)
-			movement.x = 0.5f;
+			movement.x = 4.0f;
 		else
 		{
-			movement.x += -0.005f * movement.x;
+			movement.x += -0.05f * movement.x;
 		}
 
-		text.move(0.3f, 0);
+		text.move(4.0f, 0);
 		if (text.getPosition().x > 1200)
 			text.setPosition(-150, 0);
 		lostArk.move(movement);
@@ -139,11 +144,10 @@ int main()
 		}
 
 		window.clear();
-
+		window.draw(lostArk);
 		if (currentState == GameState::GamePlay)
 		{
 			window.draw(text);
-			window.draw(lostArk);
 		}
 		
 		window.display();
