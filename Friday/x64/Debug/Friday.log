@@ -1,0 +1,7 @@
+﻿  Ball.cpp
+  main.cpp
+C:\Users\M1800\Desktop\IDTechGame\Friday\main.cpp(18,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\M1800\Desktop\IDTechGame\Friday\main.cpp(18,25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\M1800\Desktop\IDTechGame\Friday\main.cpp(19,27): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  Friday.vcxproj -> C:\Users\M1800\Desktop\IDTechGame\x64\Debug\Friday.exe
